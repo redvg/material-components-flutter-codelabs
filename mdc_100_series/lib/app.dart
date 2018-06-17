@@ -13,18 +13,97 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'supplemental/cut_corners_border.dart';
 
 import 'home.dart';
 import 'login.dart';
+import 'colors.dart';
+
+  TextTheme _buildTextTheme(TextTheme themeBase) {
+
+    return themeBase.copyWith(
+        
+        headline: themeBase.headline.copyWith(
+        
+          fontWeight: FontWeight.w500,
+      ),
+      
+        title: themeBase.title.copyWith(
+        
+          fontSize: 18.0
+      ),
+      
+        caption: themeBase.caption.copyWith(
+        
+          fontWeight: FontWeight.w400,
+        
+          fontSize: 14.0,
+      ),
+    ).apply(
+        
+        fontFamily: 'Rubik',
+        
+        displayColor: kShrineBrown900,
+        
+        bodyColor: kShrineBrown900,
+    );
+}
+
+  ThemeData _buildTheme() {
+
+    final ThemeData themeBase = ThemeData.light();
+
+    return themeBase.copyWith(
+
+      accentColor: kShrineBrown900,
+      
+      primaryColor: kShrinePink100,
+      
+      buttonColor: kShrinePink100,
+      
+      scaffoldBackgroundColor: kShrineBackgroundWhite,
+      
+      cardColor: kShrineBackgroundWhite,
+      
+      textSelectionColor: kShrinePink100,
+      
+      errorColor: kShrineErrorRed,
+
+      textTheme: _buildTextTheme(themeBase.textTheme),
+
+      primaryTextTheme: _buildTextTheme(themeBase.primaryTextTheme),
+
+      accentTextTheme: _buildTextTheme(themeBase.accentTextTheme),
+
+      primaryIconTheme: themeBase.iconTheme.copyWith(
+
+        color: kShrineBrown900,
+      ),
+
+      inputDecorationTheme: InputDecorationTheme(
+          
+          border: CutCornersBorder(),)
+    );
+  }
 
 class ShrineApp extends StatelessWidget {
+
+  final ThemeData _kCustomTheme = _buildTheme();
+
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
+      
       title: 'Shrine',
+      
       home: HomePage(),
+      
       initialRoute: '/login',
+      
       onGenerateRoute: _getRoute,
+
+      theme: _kCustomTheme,
     );
   }
 
