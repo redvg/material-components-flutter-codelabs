@@ -200,7 +200,7 @@ class HomePage extends StatelessWidget {
         ], 
       ),
 
-      body: AsymmetricView(products: getProducts(Category.all)), //call _buildProductGrid() to get GridView
+      body: _buildProductGrid(context)
     );
   }
 }
