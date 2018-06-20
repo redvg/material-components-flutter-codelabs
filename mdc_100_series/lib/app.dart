@@ -18,6 +18,9 @@ import 'supplemental/cut_corners_border.dart';
 import 'home.dart';
 import 'login.dart';
 import 'colors.dart';
+import 'backdrop.dart';
+
+import 'model/product.dart';
 
   TextTheme _buildTextTheme(TextTheme themeBase) {
 
@@ -97,7 +100,21 @@ class ShrineApp extends StatelessWidget {
       
       title: 'Shrine',
       
-      home: HomePage(),
+      home: Backdrop(
+
+        category: Category.all,
+
+        frontTitle: Text('Shrine'),
+
+        frontLayer: HomePage(),
+
+        backTitle: Text('Menu'),
+
+        backLayer: Container(
+
+          color: kShrinePink100,
+        ),
+      ),
       
       initialRoute: '/login',
       
